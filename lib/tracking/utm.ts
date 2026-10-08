@@ -22,7 +22,7 @@ function safeSet(key: string, value: string): void {
   try {
     localStorage.setItem(key, value);
   } catch {
-    // private mode / storage penuh — tracking dilewati tanpa error
+    // private mode / storage full — skip tracking silently
   }
 }
 
@@ -36,15 +36,15 @@ export function readStoredUtm(): UtmRecord {
       return parsed as UtmRecord;
     }
   } catch {
-    // data rusak diabaikan
+    // corrupted data — ignore it
   }
   return {};
 }
 
 /**
- * Ambil UTM dari URL saat ini; kalau belum ada, pakai first-touch
- * yang tersimpan di localStorage. First-touch menang agar atribusi
- * kampanye tidak hilang saat user berpindah halaman.
+ * Read UTM params from the current URL; fall back to the first-touch
+ * record stored in localStorage. First-touch wins so campaign
+ * attribution is not lost when the user navigates between pages.
  */
 export function captureUtm(search?: string): UtmRecord {
   if (typeof window === "undefined") return {};

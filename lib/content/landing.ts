@@ -1,9 +1,10 @@
 import { getProduct, type Product } from "@/lib/marketplace/catalog";
 
 /**
- * Reader konten landing — versi STATIS (belum terhubung database).
- * Nama fungsi dan bentuk datanya disamakan dengan versi database supaya
- * saat step DB berikutnya hanya isi fungsi yang diganti, bukan komponen.
+ * Landing content reader — STATIC version (not yet connected to the
+ * database). Function names and data shapes mirror the database
+ * version so the upcoming DB step only replaces function bodies,
+ * not components.
  */
 
 export interface HeroContent {

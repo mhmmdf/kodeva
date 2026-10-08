@@ -8,9 +8,9 @@ const inputClassName =
   "w-full rounded-xl border border-slate-300 bg-white px-4 py-2.5 text-sm text-slate-900 placeholder:text-slate-400 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-200";
 
 /**
- * Form lead versi UI saja — submit ditangani di client dan menampilkan
- * pesan sukses tanpa menyimpan ke mana pun. Penyimpanan ke database
- * (server action + tabel leads) disambungkan di step database.
+ * UI-only lead form — submit is handled on the client and shows a
+ * success message without persisting anything. Persistence (server
+ * action + leads table) will be wired up in the database step.
  */
 export function LeadForm() {
   const [sent, setSent] = useState(false);
@@ -29,7 +29,7 @@ export function LeadForm() {
   return (
     <form
       action={() => {
-        // Simpan first-touch UTM (kalau ada di URL) untuk tracking tahap berikutnya.
+        // Store first-touch UTM (if present in the URL) for the upcoming tracking step.
         captureUtm();
         setSent(true);
       }}
