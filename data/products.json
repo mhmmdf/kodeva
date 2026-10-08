@@ -1,0 +1,330 @@
+{
+  "campaign": {
+    "id": "promo-akhir-tahun",
+    "name": "Promo Akhir Tahun",
+    "label": "Promo Akhir Tahun — diskon lisensi s/d 40%"
+  },
+  "categories": [
+    { "slug": "kasir", "name": "Aplikasi Kasir" },
+    { "slug": "hr-payroll", "name": "HR & Payroll" },
+    { "slug": "inventory", "name": "Manajemen Stok" },
+    { "slug": "addon", "name": "Add-on" }
+  ],
+  "products": [
+    {
+      "slug": "kodeva-kasir",
+      "name": "Kodeva Kasir",
+      "category": "kasir",
+      "badge": "Terlaris",
+      "tagline": "Kasir cepat untuk toko, warung, dan UMKM.",
+      "description": "Kodeva Kasir membantu Anda menerima pembayaran, mencetak struk, dan memantau penjualan harian tanpa ribet. Berjalan di HP, tablet, maupun laptop, dan tetap bisa dipakai saat internet tidak stabil.",
+      "screenshots": ["/images/kasir-1.svg", "/images/kasir-2.svg"],
+      "features": [
+        "Transaksi tunai, QRIS, dan kartu dalam satu layar",
+        "Laporan penjualan real-time per outlet",
+        "Struk thermal & digital (WhatsApp/email)",
+        "Mode offline — transaksi tetap jalan saat koneksi putus"
+      ],
+      "promoRemaining": 42,
+      "packages": [
+        {
+          "id": "basic",
+          "name": "Basic",
+          "licenseUnit": "user",
+          "price": 149000,
+          "originalPrice": 199000,
+          "description": "Untuk satu kasir dan satu outlet.",
+          "features": ["1 user kasir", "1 outlet", "Laporan harian", "Support email"]
+        },
+        {
+          "id": "pro",
+          "name": "Pro",
+          "licenseUnit": "outlet",
+          "price": 299000,
+          "originalPrice": 399000,
+          "description": "Untuk beberapa outlet dengan banyak kasir.",
+          "features": ["5 user kasir", "3 outlet", "Laporan lanjutan + export Excel", "Prioritas support"]
+        },
+        {
+          "id": "business",
+          "name": "Business",
+          "licenseUnit": "outlet",
+          "price": 549000,
+          "originalPrice": 699000,
+          "description": "Untuk jaringan toko dengan kebutuhan multi-gudang.",
+          "features": ["User tanpa batas", "Outlet tanpa batas", "Multi-gudang", "Account manager"]
+        }
+      ]
+    },
+    {
+      "slug": "kodeva-kasir-pro",
+      "name": "Kodeva Kasir Pro",
+      "category": "kasir",
+      "badge": "Untuk Ritel Modern",
+      "tagline": "POS lengkap dengan membership, promo, dan integrasi e-commerce.",
+      "description": "Versi lanjutan Kodeva Kasir untuk ritel yang butuh program membership, promo berganda, kasir shift, dan sinkronisasi stok ke marketplace.",
+      "screenshots": ["/images/kasirpro-1.svg", "/images/kasirpro-2.svg"],
+      "features": [
+        "Membership & poin loyalitas",
+        "Promo bundling dan diskon per member",
+        "Manajemen shift & rekonsiliasi kasir",
+        "Sinkron stok ke marketplace"
+      ],
+      "promoRemaining": 18,
+      "packages": [
+        {
+          "id": "basic",
+          "name": "Basic",
+          "licenseUnit": "user",
+          "price": 249000,
+          "originalPrice": 349000,
+          "description": "Fitur lengkap untuk satu toko.",
+          "features": ["2 user kasir", "1 outlet", "Membership & poin", "Laporan shift"]
+        },
+        {
+          "id": "pro",
+          "name": "Pro",
+          "licenseUnit": "outlet",
+          "price": 449000,
+          "originalPrice": 599000,
+          "description": "Untuk beberapa toko dengan promo terpusat.",
+          "features": ["10 user kasir", "5 outlet", "Promo terpusat", "Sinkron marketplace"]
+        },
+        {
+          "id": "business",
+          "name": "Business",
+          "licenseUnit": "outlet",
+          "price": 799000,
+          "originalPrice": 999000,
+          "description": "Untuk jaringan ritel nasional.",
+          "features": ["User tanpa batas", "Outlet tanpa batas", "API akses", "Account manager"]
+        }
+      ]
+    },
+    {
+      "slug": "kodeva-hr-payroll",
+      "name": "Kodeva HR & Payroll",
+      "category": "hr-payroll",
+      "badge": null,
+      "tagline": "Gaji, THR, dan cuti karyawan terhitung otomatis.",
+      "description": "Kodeva HR & Payroll menghitung gaji bulanan, THR, BPJS, dan pajak PPh 21 sesuai aturan Indonesia. Karyawan bisa mengajukan cuti lewat aplikasi, HR tinggal approve.",
+      "screenshots": ["/images/hr-1.svg", "/images/hr-2.svg"],
+      "features": [
+        "Hitung gaji, THR, lembur, dan potongan otomatis",
+        "Slip gaji dikirim otomatis ke email karyawan",
+        "Cuti & izin dengan alur approval",
+        "Rekap BPJS dan PPh 21 siap lapor"
+      ],
+      "promoRemaining": 30,
+      "packages": [
+        {
+          "id": "basic",
+          "name": "Basic",
+          "licenseUnit": "user",
+          "price": 199000,
+          "originalPrice": 249000,
+          "description": "Untuk tim kecil sampai 25 karyawan.",
+          "features": ["Hingga 25 karyawan", "Payroll bulanan", "Slip gaji digital", "Cuti & izin"]
+        },
+        {
+          "id": "pro",
+          "name": "Pro",
+          "licenseUnit": "user",
+          "price": 349000,
+          "originalPrice": 449000,
+          "description": "Untuk perusahaan berkembang sampai 100 karyawan.",
+          "features": ["Hingga 100 karyawan", "Multi departemen", "Approvals berjenjang", "Export ke Excel & akuntansi"]
+        },
+        {
+          "id": "business",
+          "name": "Business",
+          "licenseUnit": "user",
+          "price": 649000,
+          "originalPrice": 799000,
+          "description": "Untuk perusahaan multi-cabang.",
+          "features": ["Karyawan tanpa batas", "Multi-cabang", "Kebijakan cuti kustom", "Prioritas onboarding"]
+        }
+      ]
+    },
+    {
+      "slug": "kodeva-attendance",
+      "name": "Kodeva Attendance",
+      "category": "hr-payroll",
+      "badge": null,
+      "tagline": "Absensi fingerprint, selfie, dan GPS untuk tim lapangan.",
+      "description": "Pantau kehadiran karyawan dari mana saja. Kombinasi fingerprint di kantor, selfie ber-geotag untuk tim lapangan, dan laporan keterlambatan yang langsung terhubung ke payroll.",
+      "screenshots": ["/images/attendance-1.svg", "/images/attendance-2.svg"],
+      "features": [
+        "Absensi selfie + GPS untuk tim lapangan",
+        "Jadwal shift fleksibel",
+        "Peringatan keterlambatan otomatis",
+        "Rekap kehadiran siap untuk payroll"
+      ],
+      "promoRemaining": 50,
+      "packages": [
+        {
+          "id": "basic",
+          "name": "Basic",
+          "licenseUnit": "user",
+          "price": 49000,
+          "originalPrice": 69000,
+          "description": "Absensi dasar untuk satu lokasi.",
+          "features": ["Hingga 30 karyawan", "1 lokasi", "Rekap bulanan"]
+        },
+        {
+          "id": "pro",
+          "name": "Pro",
+          "licenseUnit": "user",
+          "price": 89000,
+          "originalPrice": 119000,
+          "description": "Shift & multi-lokasi.",
+          "features": ["Hingga 150 karyawan", "5 lokasi", "Shift & lembur", "Integrasi payroll"]
+        },
+        {
+          "id": "business",
+          "name": "Business",
+          "licenseUnit": "user",
+          "price": 149000,
+          "originalPrice": 199000,
+          "description": "Untuk operasi multi-cabang.",
+          "features": ["Karyawan tanpa batas", "Lokasi tanpa batas", "API & SSO", "Dedicated support"]
+        }
+      ]
+    },
+    {
+      "slug": "kodeva-stok",
+      "name": "Kodeva Stok",
+      "category": "inventory",
+      "badge": null,
+      "tagline": "Stok akurat otomatis tersinkron dengan penjualan.",
+      "description": "Kodeva Stok memantau pergerakan barang, stok minimum, dan margin per item. Setiap transaksi kasir otomatis mengurangi stok sehingga tidak ada selisih opname.",
+      "screenshots": ["/images/stok-1.svg", "/images/stok-2.svg"],
+      "features": [
+        "Sinkron otomatis dengan Kodeva Kasir",
+        "Peringatan stok minimum",
+        "Laporan margin per item",
+        "Opname cepat lewat scan barcode"
+      ],
+      "promoRemaining": 25,
+      "packages": [
+        {
+          "id": "basic",
+          "name": "Basic",
+          "licenseUnit": "user",
+          "price": 99000,
+          "originalPrice": 129000,
+          "description": "Untuk satu gudang.",
+          "features": ["1 gudang", "500 item", "Riwayat stok"]
+        },
+        {
+          "id": "pro",
+          "name": "Pro",
+          "licenseUnit": "outlet",
+          "price": 179000,
+          "originalPrice": 229000,
+          "description": "Untuk beberapa gudang.",
+          "features": ["3 gudang", "5.000 item", "Transfer antar gudang", "Laporan margin"]
+        },
+        {
+          "id": "business",
+          "name": "Business",
+          "licenseUnit": "outlet",
+          "price": 299000,
+          "originalPrice": 399000,
+          "description": "Untuk jaringan gudang & toko.",
+          "features": ["Gudang tanpa batas", "Item tanpa batas", "Prediksi restock", "API akses"]
+        }
+      ]
+    },
+    {
+      "slug": "kodeva-wa-notifier",
+      "name": "Kodeva WA Notifier",
+      "category": "addon",
+      "badge": "Add-on",
+      "tagline": "Kirim struk, slip gaji, dan promo lewat WhatsApp.",
+      "description": "Add-on pengiriman WhatsApp otomatis untuk struk kasir, slip gaji, invoice, dan broadcast promo. Template pesan bisa diubah sendiri oleh tim tanpa bantuan developer.",
+      "screenshots": ["/images/wa-1.svg", "/images/wa-2.svg"],
+      "features": [
+        "Kirim struk & invoice otomatis",
+        "Template pesan bisa diedit sendiri",
+        "Broadcast promo terjadwal",
+        "Laporan status terkirim/gagal"
+      ],
+      "promoRemaining": 60,
+      "packages": [
+        {
+          "id": "basic",
+          "name": "Basic",
+          "licenseUnit": "user",
+          "price": 79000,
+          "originalPrice": 99000,
+          "description": "Notifikasi transactional.",
+          "features": ["500 pesan/bulan", "1 template", "Struk & invoice"]
+        },
+        {
+          "id": "pro",
+          "name": "Pro",
+          "licenseUnit": "user",
+          "price": 149000,
+          "originalPrice": 199000,
+          "description": "Termasuk broadcast promo.",
+          "features": ["2.500 pesan/bulan", "10 template", "Broadcast terjadwal"]
+        },
+        {
+          "id": "business",
+          "name": "Business",
+          "licenseUnit": "user",
+          "price": 249000,
+          "originalPrice": 329000,
+          "description": "Volume tinggi.",
+          "features": ["10.000 pesan/bulan", "Template tanpa batas", "Prioritas pengiriman"]
+        }
+      ]
+    },
+    {
+      "slug": "kodeva-laporan-pajak",
+      "name": "Kodeva Laporan Pajak",
+      "category": "addon",
+      "badge": null,
+      "tagline": "Rekap omzet dan pajak UMKM siap lapor.",
+      "description": "Add-on yang merapikan omzet harian, menghitung PPh final UMKM 0,5%, dan menyiapkan berkas pelaporan SPT Masa sehingga buku besar selalu siap saat jatuh tempo.",
+      "screenshots": ["/images/pajak-1.svg", "/images/pajak-2.svg"],
+      "features": [
+        "Rekap omzet otomatis dari kasir",
+        "Simulasi PPh final UMKM 0,5%",
+        "Ekspor buku besar untuk SHT",
+        "Pengingat jadwal pelaporan"
+      ],
+      "promoRemaining": 12,
+      "packages": [
+        {
+          "id": "basic",
+          "name": "Basic",
+          "licenseUnit": "user",
+          "price": 129000,
+          "originalPrice": 169000,
+          "description": "Untuk satu NPWP.",
+          "features": ["1 NPWP", "Rekap omzet", "Ekspor CSV"]
+        },
+        {
+          "id": "pro",
+          "name": "Pro",
+          "licenseUnit": "user",
+          "price": 249000,
+          "originalPrice": 329000,
+          "description": "Untuk beberapa NPWP.",
+          "features": ["3 NPWP", "Simulasi PPh final", "Buku besar SPT"]
+        },
+        {
+          "id": "business",
+          "name": "Business",
+          "licenseUnit": "user",
+          "price": 399000,
+          "originalPrice": 499000,
+          "description": "Untuk banyak unit usaha.",
+          "features": ["NPWP tanpa batas", "Konsolidasi grup", "Prioritas support"]
+        }
+      ]
+    }
+  ]
+}
