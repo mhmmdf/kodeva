@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800" font-family="Segoe UI, Helvetica, Arial, sans-serif">
+  
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#312e81"/>
+      <stop offset="100%" stop-color="#4f46e5"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="800" fill="url(#bg)"/>
+  <circle cx="1020" cy="120" r="280" fill="#818cf8" opacity="0.18"/>
+  <circle cx="120" cy="720" r="240" fill="#ffffff" opacity="0.08"/>
+  
+  <rect x="660" y="144" width="456" height="512" rx="18" fill="#0f172a" opacity="0.55"/>
+  <rect x="660" y="144" width="456" height="61.44" rx="18" fill="#818cf8" opacity="0.9"/>
+  <circle cx="684" cy="174.72" r="6" fill="#ffffff" opacity="0.8"/>
+  <circle cx="706" cy="174.72" r="6" fill="#ffffff" opacity="0.55"/>
+  <circle cx="728" cy="174.72" r="6" fill="#ffffff" opacity="0.35"/>
+  <rect x="687.36" y="220.45866666666666" width="328.32" height="37.54666666666667" rx="6" fill="#ffffff" opacity="0.85"/><rect x="687.36" y="295.55199999999996" width="228" height="37.54666666666667" rx="6" fill="#ffffff" opacity="0.45"/><rect x="687.36" y="370.6453333333333" width="328.32" height="37.54666666666667" rx="6" fill="#ffffff" opacity="0.85"/><rect x="687.36" y="445.7386666666667" width="228" height="37.54666666666667" rx="6" fill="#ffffff" opacity="0.45"/><rect x="687.36" y="520.832" width="328.32" height="37.54666666666667" rx="6" fill="#ffffff" opacity="0.85"/><rect x="687.36" y="595.9253333333335" width="228" height="37.54666666666667" rx="6" fill="#ffffff" opacity="0.45"/>
+  <text x="84.00000000000001" y="376" fill="#ffffff" font-size="68" font-weight="700">Kodeva untuk UMKM</text>
+  <text x="84.00000000000001" y="455.99999999999994" fill="#ffffff" font-size="29" opacity="0.85">Kasir, HR &amp; payroll, stok — satu platform</text>
+  <rect x="84.00000000000001" y="504" width="288" height="72" rx="36" fill="#ffffff" opacity="0.92"/>
+  <text x="228" y="550.4" fill="#312e81" font-size="28" font-weight="600" text-anchor="middle">Kodeva</text>
+</svg>
