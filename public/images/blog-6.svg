@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" font-family="Segoe UI, Helvetica, Arial, sans-serif">
+  
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#78350f"/>
+      <stop offset="100%" stop-color="#d97706"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <circle cx="1020" cy="94.5" r="220.5" fill="#fcd34d" opacity="0.18"/>
+  <circle cx="120" cy="567" r="189" fill="#ffffff" opacity="0.08"/>
+  
+  <text x="84.00000000000001" y="296.09999999999997" fill="#ffffff" font-size="54" font-weight="700">Ekspansi Malaysia &amp; Singapura</text>
+  <text x="84.00000000000001" y="359.09999999999997" fill="#ffffff" font-size="23" opacity="0.85">Draft internal</text>
+  <rect x="84.00000000000001" y="396.9" width="288" height="56.699999999999996" rx="28.349999999999998" fill="#ffffff" opacity="0.92"/>
+  <text x="228" y="433.43999999999994" fill="#78350f" font-size="22" font-weight="600" text-anchor="middle">Kodeva</text>
+</svg>
