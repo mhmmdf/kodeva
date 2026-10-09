@@ -24,8 +24,8 @@ export default async function AdminDashboardPage() {
 
   const stats = [
     { label: "Lead masuk", value: leadCount.length, href: "/admin/leads" },
-    { label: "Artikel publish", value: published, href: "/admin/artikel" },
-    { label: "Artikel draft", value: drafts, href: "/admin/artikel" },
+    { label: "Artikel publish", value: published, href: "/admin/posts" },
+    { label: "Artikel draft", value: drafts, href: "/admin/posts" },
     { label: "Testimoni aktif", value: testimonialCount.length, href: "/admin/landing" },
     { label: "FAQ aktif", value: faqCount.length, href: "/admin/landing" },
   ];
