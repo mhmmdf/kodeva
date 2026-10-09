@@ -17,8 +17,9 @@ import {
 // so CMS edits show up immediately.
 export const instant = false;
 
-export function generateStaticParams() {
-  return getPublishedSlugs().map((slug) => ({ slug }));
+export async function generateStaticParams() {
+  const slugs = await getPublishedSlugs();
+  return slugs.map((slug) => ({ slug }));
 }
 
 const dateFormatter = new Intl.DateTimeFormat("id-ID", {
