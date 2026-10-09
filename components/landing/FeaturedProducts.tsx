@@ -1,5 +1,6 @@
 import Link from "next/link";
 
+import { TrackedCtaLink } from "@/components/tracking/TrackedCtaLink";
 import {
   cheapestPackage,
   discountPercent,
@@ -74,12 +75,14 @@ export function FeaturedProducts({ products }: { products: Product[] }) {
                   </p>
                 </div>
               ) : null}
-              <Link
+              <TrackedCtaLink
                 href={`/products/${product.slug}`}
+                contentId={`featured-${product.slug}`}
+                contentType="product_card"
                 className="mt-5 inline-flex items-center justify-center rounded-xl border border-indigo-200 px-4 py-2.5 text-sm font-semibold text-indigo-700 transition-colors group-hover:bg-indigo-600 group-hover:text-white group-hover:border-indigo-600"
               >
                 Lihat detail
-              </Link>
+              </TrackedCtaLink>
             </article>
           );
         })}

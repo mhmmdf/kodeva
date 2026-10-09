@@ -11,6 +11,7 @@ import {
   getProduct,
 } from "@/lib/marketplace/catalog";
 import { useCart, type CartItem } from "@/lib/marketplace/cart";
+import { GA4_CURRENCY, pushEvent } from "@/lib/tracking/dataLayer";
 import { captureUtm } from "@/lib/tracking/utm";
 
 const inputClassName =
@@ -229,7 +230,48 @@ export function CartView() {
           className="mt-5 space-y-3"
           onSubmit={(event) => {
             event.preventDefault();
-            captureUtm();
+            const form = new FormData(event.currentTarget);
+            const utm = captureUtm();
+
+            // Mock order payload: mirrors what a future backend would
+            // receive on checkout, including first-touch UTM attribution.
+            const mockOrder = {
+              id: `mock-${Date.now()}`,
+              buyer: {
+                name: String(form.get("name") ?? ""),
+                email: String(form.get("email") ?? ""),
+                whatsapp: String(form.get("whatsapp") ?? ""),
+              },
+              currency: GA4_CURRENCY,
+              subtotal,
+              items: lines.map((line) => ({
+                item_id: line.item.slug,
+                item_name: line.name,
+                item_variant: line.packageName,
+                price: line.price,
+                quantity: line.item.qty,
+              })),
+              utm,
+              createdAt: new Date().toISOString(),
+            };
+
+            pushEvent("begin_checkout", {
+              ecommerce: {
+                currency: GA4_CURRENCY,
+                value: subtotal,
+                items: mockOrder.items,
+              },
+              checkout_id: mockOrder.id,
+            });
+            try {
+              localStorage.setItem(
+                "kodeva:last_order",
+                JSON.stringify(mockOrder),
+              );
+            } catch {
+              // private mode / storage full — keep checkout working
+            }
+
             clear();
             router.push("/cart/success");
           }}

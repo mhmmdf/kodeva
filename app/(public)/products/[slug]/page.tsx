@@ -4,7 +4,10 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 
 import { PurchasePanel } from "@/components/marketplace/PurchasePanel";
+import { ViewItemTracker } from "@/components/tracking/ViewItemTracker";
+import { buildViewEcommerce } from "@/lib/tracking/dataLayer";
 import {
+  cheapestPackage,
   getCategory,
   getProduct,
   products,
@@ -47,9 +50,18 @@ export default async function ProductDetailPage({
   if (!product) notFound();
 
   const category = getCategory(product.category);
+  const cheapest = cheapestPackage(product);
 
   return (
     <div className="mx-auto w-full max-w-6xl px-4 py-14 sm:px-6 sm:py-16">
+      <ViewItemTracker
+        ecommerce={buildViewEcommerce({
+          slug: product.slug,
+          name: product.name,
+          category: category?.name ?? product.category,
+          price: cheapest?.price ?? 0,
+        })}
+      />
       <nav
         aria-label="Breadcrumb"
         className="text-sm text-slate-500"
