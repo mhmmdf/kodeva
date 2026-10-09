@@ -1,6 +1,6 @@
 import Image from "next/image";
-import Link from "next/link";
 
+import { TrackedCtaLink } from "@/components/tracking/TrackedCtaLink";
 import type { HeroContent } from "@/lib/content/landing";
 
 export function Hero({ data }: { data: HeroContent }) {
@@ -28,18 +28,20 @@ export function Hero({ data }: { data: HeroContent }) {
             {data.subtitle}
           </p>
           <div className="mt-8 flex flex-wrap items-center gap-3">
-            <Link
+            <TrackedCtaLink
               href={data.ctaLink || "/products"}
+              contentId="hero-primary-cta"
               className="rounded-xl bg-white px-6 py-3 text-base font-semibold text-indigo-700 shadow-lg transition-transform hover:-translate-y-0.5"
             >
               {data.ctaLabel}
-            </Link>
-            <Link
+            </TrackedCtaLink>
+            <TrackedCtaLink
               href="#hubungi-kami"
+              contentId="hero-contact-cta"
               className="rounded-xl border border-white/40 px-6 py-3 text-base font-semibold text-white transition-colors hover:bg-white/10"
             >
               Hubungi Kami
-            </Link>
+            </TrackedCtaLink>
           </div>
           <dl className="mt-10 grid max-w-md grid-cols-3 gap-4 border-t border-white/20 pt-6 text-white">
             <div>

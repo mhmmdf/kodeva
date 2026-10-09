@@ -9,6 +9,7 @@ import {
   type Product,
 } from "@/lib/marketplace/catalog";
 import { useCart } from "@/lib/marketplace/cart";
+import { GA4_CURRENCY, pushEvent } from "@/lib/tracking/dataLayer";
 
 /**
  * Purchase panel: pick a package, choose a quantity (capped by the
@@ -138,6 +139,22 @@ export function PurchasePanel({ product }: { product: Product }) {
         <button
           type="button"
           onClick={() => {
+            pushEvent("add_to_cart", {
+              ecommerce: {
+                currency: GA4_CURRENCY,
+                value: total,
+                items: [
+                  {
+                    item_id: product.slug,
+                    item_name: product.name,
+                    item_category: product.category,
+                    item_variant: selected?.name,
+                    price: selected?.price,
+                    quantity: effectiveQty,
+                  },
+                ],
+              },
+            });
             addItem({
               slug: product.slug,
               packageId: selected?.id ?? "",
