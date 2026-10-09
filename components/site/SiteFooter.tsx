@@ -4,10 +4,10 @@ const columns = [
   {
     title: "Produk",
     links: [
-      { href: "/produk", label: "Semua produk" },
-      { href: "/produk/kodeva-kasir", label: "Kodeva Kasir" },
-      { href: "/produk/kodeva-hr-payroll", label: "HR & Payroll" },
-      { href: "/produk/kodeva-stok", label: "Kodeva Stok" },
+      { href: "/products", label: "Semua produk" },
+      { href: "/products/kodeva-kasir", label: "Kodeva Kasir" },
+      { href: "/products/kodeva-hr-payroll", label: "HR & Payroll" },
+      { href: "/products/kodeva-stok", label: "Kodeva Stok" },
     ],
   },
   {

@@ -2,7 +2,7 @@ import Link from "next/link";
 
 const links = [
   { href: "/", label: "Beranda" },
-  { href: "/produk", label: "Produk" },
+  { href: "/products", label: "Produk" },
   { href: "/blog", label: "Blog" },
 ];
 
@@ -34,13 +34,13 @@ export function SiteHeader() {
 
         <div className="flex items-center gap-2">
           <Link
-            href="/keranjang"
+            href="/cart"
             className="hidden rounded-lg px-3 py-2 text-sm font-medium text-slate-600 transition-colors hover:bg-slate-100 hover:text-slate-900 sm:block"
           >
             Keranjang
           </Link>
           <Link
-            href="/produk"
+            href="/products"
             className="rounded-lg bg-indigo-600 px-4 py-2 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-indigo-500"
           >
             Lihat Promo

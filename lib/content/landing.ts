@@ -23,7 +23,7 @@ const hero: HeroContent = {
     "Aplikasi kasir, HR & payroll, dan add-on pendukung dengan lisensi berlangganan. Daftar lewat promo akhir tahun dan mulai operasional tanpa ribet.",
   imageUrl: "/images/hero.svg",
   ctaLabel: "Lihat Katalog Produk",
-  ctaLink: "/produk",
+  ctaLink: "/products",
 };
 
 export async function getHero(): Promise<HeroContent> {
