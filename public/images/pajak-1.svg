@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="750" viewBox="0 0 1200 750" font-family="Segoe UI, Helvetica, Arial, sans-serif">
+  
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#78350f"/>
+      <stop offset="100%" stop-color="#d97706"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="750" fill="url(#bg)"/>
+  <circle cx="1020" cy="112.5" r="262.5" fill="#fcd34d" opacity="0.18"/>
+  <circle cx="120" cy="675" r="225" fill="#ffffff" opacity="0.08"/>
+  
+  <rect x="660" y="135" width="456" height="480" rx="18" fill="#0f172a" opacity="0.55"/>
+  <rect x="660" y="135" width="456" height="57.599999999999994" rx="18" fill="#fcd34d" opacity="0.9"/>
+  <circle cx="684" cy="163.8" r="6" fill="#ffffff" opacity="0.8"/>
+  <circle cx="706" cy="163.8" r="6" fill="#ffffff" opacity="0.55"/>
+  <circle cx="728" cy="163.8" r="6" fill="#ffffff" opacity="0.35"/>
+  <rect x="687.36" y="206.68" width="328.32" height="35.199999999999996" rx="6" fill="#ffffff" opacity="0.85"/><rect x="687.36" y="277.08" width="228" height="35.199999999999996" rx="6" fill="#ffffff" opacity="0.45"/><rect x="687.36" y="347.47999999999996" width="328.32" height="35.199999999999996" rx="6" fill="#ffffff" opacity="0.85"/><rect x="687.36" y="417.87999999999994" width="228" height="35.199999999999996" rx="6" fill="#ffffff" opacity="0.45"/><rect x="687.36" y="488.2799999999999" width="328.32" height="35.199999999999996" rx="6" fill="#ffffff" opacity="0.85"/><rect x="687.36" y="558.68" width="228" height="35.199999999999996" rx="6" fill="#ffffff" opacity="0.45"/>
+  <text x="84.00000000000001" y="352.5" fill="#ffffff" font-size="64" font-weight="700">Laporan Pajak</text>
+  <text x="84.00000000000001" y="427.49999999999994" fill="#ffffff" font-size="27" opacity="0.85">Rekap omzet siap lapor</text>
+  <rect x="84.00000000000001" y="472.5" width="288" height="67.5" rx="33.75" fill="#ffffff" opacity="0.92"/>
+  <text x="228" y="516" fill="#78350f" font-size="26" font-weight="600" text-anchor="middle">Kodeva</text>
+</svg>
