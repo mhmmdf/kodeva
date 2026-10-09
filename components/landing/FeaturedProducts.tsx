@@ -23,7 +23,7 @@ export function FeaturedProducts({ products }: { products: Product[] }) {
           </h2>
         </div>
         <Link
-          href="/produk"
+          href="/products"
           className="text-sm font-semibold text-indigo-600 hover:text-indigo-500"
         >
           Lihat semua produk →
@@ -75,7 +75,7 @@ export function FeaturedProducts({ products }: { products: Product[] }) {
                 </div>
               ) : null}
               <Link
-                href={`/produk/${product.slug}`}
+                href={`/products/${product.slug}`}
                 className="mt-5 inline-flex items-center justify-center rounded-xl border border-indigo-200 px-4 py-2.5 text-sm font-semibold text-indigo-700 transition-colors group-hover:bg-indigo-600 group-hover:text-white group-hover:border-indigo-600"
               >
                 Lihat detail

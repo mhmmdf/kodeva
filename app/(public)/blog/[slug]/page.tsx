@@ -128,7 +128,7 @@ export default async function PostDetailPage({ params }: PostDetailProps) {
               return (
                 <Link
                   key={product.slug}
-                  href={`/produk/${product.slug}`}
+                  href={`/products/${product.slug}`}
                   className="group rounded-xl border border-white bg-white p-4 shadow-sm transition-shadow hover:shadow"
                 >
                   <p className="text-sm font-semibold text-slate-900 group-hover:text-indigo-600">

@@ -29,7 +29,7 @@ export function Hero({ data }: { data: HeroContent }) {
           </p>
           <div className="mt-8 flex flex-wrap items-center gap-3">
             <Link
-              href={data.ctaLink || "/produk"}
+              href={data.ctaLink || "/products"}
               className="rounded-xl bg-white px-6 py-3 text-base font-semibold text-indigo-700 shadow-lg transition-transform hover:-translate-y-0.5"
             >
               {data.ctaLabel}
