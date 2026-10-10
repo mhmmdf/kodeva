@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 
 import {
@@ -8,23 +8,32 @@ import {
   formatIDR,
   type Product,
 } from "@/lib/marketplace/catalog";
-import { useCart } from "@/lib/marketplace/cart";
+import { quotaLeft, useCart } from "@/lib/marketplace/cart";
 import { GA4_CURRENCY, pushEvent } from "@/lib/tracking/dataLayer";
 
 /**
  * Purchase panel: pick a package, choose a quantity (capped by the
- * remaining promo quota), and push the line into the cart store.
+ * remaining promo quota of the product as a whole — licenses already
+ * in the cart under a different package count toward the same cap),
+ * and push the line into the cart store.
  */
 export function PurchasePanel({ product }: { product: Product }) {
   const router = useRouter();
+  const items = useCart((state) => state.items);
   const addItem = useCart((state) => state.addItem);
   const [packageId, setPackageId] = useState(product.packages[0]?.id ?? "");
   const [qty, setQty] = useState(1);
   const [added, setAdded] = useState(false);
 
+  // The store hydrates lazily from localStorage (skipHydration); pull
+  // the current cart in so the quota cap sees other packages too.
+  useEffect(() => {
+    void useCart.persist.rehydrate();
+  }, []);
+
   const selected = product.packages.find((pkg) => pkg.id === packageId);
-  const maxQty = Math.max(1, product.promoRemaining);
-  const effectiveQty = Math.min(Math.max(1, qty), maxQty);
+  const maxQty = quotaLeft(items, product.slug, packageId);
+  const effectiveQty = Math.min(Math.max(1, qty), Math.max(1, maxQty));
   const total = selected ? selected.price * effectiveQty : 0;
 
   if (product.packages.length === 0) {
@@ -119,17 +128,24 @@ export function PurchasePanel({ product }: { product: Product }) {
               <button
                 type="button"
                 aria-label="Tambah jumlah"
+                disabled={maxQty <= 0}
                 onClick={() =>
                   setQty((value) => Math.min(maxQty, value + 1))
                 }
-                className="px-3 py-1.5 text-slate-600 hover:bg-slate-100"
+                className="px-3 py-1.5 text-slate-600 hover:bg-slate-100 disabled:cursor-not-allowed disabled:text-slate-300"
               >
                 +
               </button>
             </div>
-            <span className="text-xs text-amber-600">
-              Maks. {maxQty} (sisa kuota promo)
-            </span>
+            {maxQty > 0 ? (
+              <span className="text-xs text-amber-600">
+                Maks. {maxQty} (sisa kuota promo)
+              </span>
+            ) : (
+              <span className="text-xs font-medium text-rose-600">
+                Kuota promo produk ini sudah habis di keranjang Anda
+              </span>
+            )}
           </div>
           <p className="text-lg font-bold text-slate-900">
             {formatIDR(total)}
@@ -138,6 +154,7 @@ export function PurchasePanel({ product }: { product: Product }) {
 
         <button
           type="button"
+          disabled={maxQty <= 0}
           onClick={() => {
             pushEvent("add_to_cart", {
               ecommerce: {
@@ -163,13 +180,13 @@ export function PurchasePanel({ product }: { product: Product }) {
             setAdded(true);
             router.push("/cart");
           }}
-          className="mt-4 w-full rounded-xl bg-indigo-600 px-6 py-3 text-base font-semibold text-white shadow-sm transition-colors hover:bg-indigo-500"
+          className="mt-4 w-full rounded-xl bg-indigo-600 px-6 py-3 text-base font-semibold text-white shadow-sm transition-colors hover:bg-indigo-500 disabled:cursor-not-allowed disabled:bg-slate-300"
         >
-          {added ? "Ditambahkan!" : "Tambah ke Keranjang"}
+          {maxQty <= 0 ? "Kuota Promo Habis" : added ? "Ditambahkan!" : "Tambah ke Keranjang"}
         </button>
         <p className="mt-2 text-xs leading-5 text-slate-400">
-          Kuota promo terbatas — jumlah di keranjang akan dibatasi sisa
-          lisensi.
+          Kuota promo terbatas — batasnya dihitung dari total seluruh
+          lisensi produk ini di keranjang, lintas paket.
         </p>
       </div>
     </section>

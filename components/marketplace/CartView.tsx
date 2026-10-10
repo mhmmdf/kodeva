@@ -10,7 +10,7 @@ import {
   formatIDR,
   getProduct,
 } from "@/lib/marketplace/catalog";
-import { useCart, type CartItem } from "@/lib/marketplace/cart";
+import { quotaLeft, useCart, type CartItem } from "@/lib/marketplace/cart";
 import { GA4_CURRENCY, pushEvent } from "@/lib/tracking/dataLayer";
 import { captureUtm } from "@/lib/tracking/utm";
 
@@ -41,7 +41,7 @@ function resolveLine(item: CartItem): ResolvedLine | null {
     unit: pkg.licenseUnit,
     price: pkg.price,
     originalPrice: pkg.originalPrice,
-    maxQty: Math.max(1, product.promoRemaining),
+    maxQty: 0,
   };
 }
 
@@ -92,7 +92,13 @@ export function CartView() {
 
   const lines = items
     .map(resolveLine)
-    .filter((line): line is ResolvedLine => line !== null);
+    .filter((line): line is ResolvedLine => line !== null)
+    .map((line) => ({
+      ...line,
+      // The promo cap spans every package of the same product, so the
+      // per-line headroom is what is left after the other lines.
+      maxQty: quotaLeft(items, line.item.slug, line.item.packageId),
+    }));
 
   const subtotal = lines.reduce(
     (sum, line) => sum + line.price * line.item.qty,
@@ -175,21 +181,28 @@ export function CartView() {
                     <span className="w-10 text-center text-sm font-semibold text-slate-900">
                       {line.item.qty}
                     </span>
-                    <button
-                      type="button"
-                      aria-label={`Tambah ${line.name}`}
-                      onClick={() =>
-                        setQty(
-                          line.item.slug,
-                          line.item.packageId,
-                          Math.min(line.maxQty, line.item.qty + 1),
-                        )
-                      }
-                      className="px-3 py-1.5 text-slate-600 hover:bg-slate-100"
-                    >
-                      +
-                    </button>
-                  </div>
+              <button
+                type="button"
+                aria-label={`Tambah ${line.name}`}
+                disabled={line.item.qty >= line.maxQty}
+                onClick={() =>
+                  setQty(
+                    line.item.slug,
+                    line.item.packageId,
+                    Math.min(line.maxQty, line.item.qty + 1),
+                  )
+                }
+                className="px-3 py-1.5 text-slate-600 hover:bg-slate-100 disabled:cursor-not-allowed disabled:text-slate-300"
+              >
+                +
+              </button>
+            </div>
+            {line.item.qty >= line.maxQty ? (
+              <p className="text-xs text-amber-600">
+                Maks. {line.maxQty} — batas kuota promo produk ini
+                (dihitung dari total seluruh paket)
+              </p>
+            ) : null}
                   <div className="text-right">
                     {percent > 0 ? (
                       <p className="text-xs font-semibold text-rose-500 line-through">
@@ -232,11 +245,15 @@ export function CartView() {
             event.preventDefault();
             const form = new FormData(event.currentTarget);
             const utm = captureUtm();
+            // Payment is simulated locally; the buyer picks which
+            // outcome to exercise (success or failure) in the form.
+            const simulatedFailed = form.get("simulated_result") === "failed";
 
             // Mock order payload: mirrors what a future backend would
             // receive on checkout, including first-touch UTM attribution.
             const mockOrder = {
               id: `mock-${Date.now()}`,
+              status: simulatedFailed ? "failed" : "paid",
               buyer: {
                 name: String(form.get("name") ?? ""),
                 email: String(form.get("email") ?? ""),
@@ -272,6 +289,11 @@ export function CartView() {
               // private mode / storage full — keep checkout working
             }
 
+            if (simulatedFailed) {
+              // Keep the cart so the buyer can retry after the failure.
+              router.push("/cart/failed");
+              return;
+            }
             clear();
             router.push("/cart/success");
           }}
@@ -315,6 +337,36 @@ export function CartView() {
               className={inputClassName}
             />
           </label>
+          <fieldset className="rounded-xl border border-slate-200 bg-slate-50 p-3">
+            <legend className="px-1 text-sm font-semibold text-slate-900">
+              Hasil simulasi pembayaran
+            </legend>
+            <div className="mt-1 flex gap-4">
+              <label className="flex items-center gap-2 text-sm text-slate-700">
+                <input
+                  type="radio"
+                  name="simulated_result"
+                  value="success"
+                  defaultChecked
+                  className="h-4 w-4 accent-indigo-600"
+                />
+                Sukses
+              </label>
+              <label className="flex items-center gap-2 text-sm text-slate-700">
+                <input
+                  type="radio"
+                  name="simulated_result"
+                  value="failed"
+                  className="h-4 w-4 accent-indigo-600"
+                />
+                Gagal
+              </label>
+            </div>
+            <p className="mt-1 text-xs leading-5 text-slate-500">
+              Pembayaran masih simulasi, jadi hasilnya bisa dipilih. Kalau
+              gagal, keranjang tetap tersimpan untuk dicoba lagi.
+            </p>
+          </fieldset>
           <button
             type="submit"
             className="w-full rounded-xl bg-indigo-600 px-6 py-3 text-base font-semibold text-white shadow-sm transition-colors hover:bg-indigo-500"
