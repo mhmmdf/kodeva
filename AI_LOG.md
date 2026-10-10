@@ -50,6 +50,17 @@ Catatan soal test: file test e2e-nya hanya dipakai untuk verifikasi internal saa
 - **Diperbaiki:** selector di-scope ke dalam form tujuan (`form:has(...)`), dan test e2e dibaca ulang satu per satu untuk menemukan asumsi semacam ini.
 - **Diverifikasi:** skenario login ulang hijau.
 
+## Sesi deploy ke Vercel (10 Oktober 2026)
+
+Bagian deploy ke Vercel dikerjakan bersama **opencode** di akhir pengerjaan — bukan karena output AI yang salah, melainkan diagnosa masalah lingkungan produksi yang belum pernah dijalani sebelumnya:
+
+- **Masalah 1:** build Vercel gagal di `collecting page data` dengan error `relation "posts" does not exist` (Neon, kode `42P01`). Lokal lancar karena `DATABASE_URL` kosong → memakai PGlite yang sudah termigrasi.
+- **Diagnosis:** migrasi Drizzle selama ini hanya dijalankan ke PGlite lokal; Neon dari integrasi Vercel Marketplace masih kosong. AI memeriksa `scripts/migrate.ts`, driver `neon-http`, dan log build untuk memastikan akar masalahnya sebelum menyentuh kode.
+- **Perbaikan:** `npm run db:setup` dijalankan sekali terhadap database Neon production (migrasi + seed), lalu script `prebuild: npm run db:migrate` ditambahkan ke `package.json` supaya schema selalu up-to-date tiap build tanpa migrasi manual. Verifikasi: query hitung row langsung ke Neon (6 artikel, 5 published) plus `npm run build` lokal hijau.
+- **Masalah 2:** build branch preview gagal dengan error berbeda — `generateStaticParams` harus return minimal satu slug (aturan Cache Components di Next 16). Ternyata `DATABASE_URL` belum ter-set di environment Preview, jadi build jatuh diam-diam ke PGlite kosong.
+- **Perbaikan:** `DATABASE_URL` ditambahkan ke environment Preview, plus `SESSION_SECRET` / `ADMIN_EMAIL` / `ADMIN_PASSWORD` untuk login CMS di produksi. Redeploy → hijau, login dan edit CMS dari browser production dicek manual dan berfungsi.
+- **Pelajaran:** fallback PGlite di `lib/db/client.ts` memang praktis untuk lokal, tapi menyembunyikan kesalahan env var di produksi (build "sukses" memakai DB lewat-tempo yang hilang). Rencana perbaikan: fail-fast dengan pesan jelas kalau `DATABASE_URL` kosong saat berjalan di Vercel.
+
 ## Bagian yang banyak dibantu AI + edge case yang diuji
 
 Bagian yang paling banyak dibantu AI adalah **form lead capture** (Bagian A, wajib), yang divalidasi dan disempurnakan lewat beberapa kali review:
