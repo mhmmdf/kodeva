@@ -4,7 +4,7 @@ Take-home test untuk posisi Fullstack Developer di PT Digital Solusi Grup. Isiny
 
 Secara garis besar: landing page + blog yang kontennya bisa diedit sendiri oleh tim marketing lewat CMS, mini marketplace (katalog, keranjang, checkout), form lead capture, dan tracking event GA4.
 
-- **Link deploy:** `[TODO]`
+- **Link deploy:** https://kodeva-three.vercel.app/
 - **Akun CMS:** `admin@kodeva.test` / `kodeva-demo-2026`
 - **Repo:** `git@github.com:mhmmdf/kodeva.git`
 
@@ -13,7 +13,7 @@ Secara garis besar: landing page + blog yang kontennya bisa diedit sendiri oleh 
 | | |
 |---|---|
 | Mulai | Kamis, 8 Oktober 2026, 19:52 WIB |
-| Selesai | `[TODO]` |
+| Selesai | Sabtu, 10 Oktober 2026, 10:30 WIB |
 | Durasi | Rentang 2 hari kalender, masih dalam deadline brief |
 
 Brief memberi estimasi 6–8 jam kerja. Saya mengerjakan bertahap dengan review manual di tiap step sebelum digabung, sehingga yang lebih representatif adalah rentang kalendernya, bukan jam kerja murni.
@@ -42,7 +42,8 @@ Tersedia juga `npm run lint`, `npm run typecheck`, dan script DB: `db:generate` 
 - Database lokal tersimpan di `.pglite/` (PGlite [Postgres in-process], jadi tidak perlu Docker). Kalau server di-kill paksa lalu query error atau halaman kosong, jalankan `rm -rf .pglite && npm run db:setup` untuk membangun ulang; data kembali seperti seed.
 - Jangan menjalankan dua proses yang membuka `.pglite` bersamaan (misal `next dev` + `next build`, atau query lewat CLI saat server masih berjalan).
 - Login admin menolak jika `SESSION_SECRET` kosong pada mode production (`next start`).
-- Saat deploy ke Vercel: cukup set `DATABASE_URL` (Neon) dan variabel env lainnya.
+- Saat deploy ke Vercel: `DATABASE_URL` terisi otomatis oleh integrasi Neon dari Marketplace; tinggal tambahkan `SESSION_SECRET`, `ADMIN_EMAIL`, dan `ADMIN_PASSWORD` untuk login CMS (set di semua environment yang dipakai, termasuk Preview).
+- Build Vercel otomatis menjalankan migrasi DB lewat script `prebuild` (`npm run db:migrate`) — idempoten, jadi tidak perlu migrasi manual tiap deploy. Seed cukup sekali (`npm run db:setup`) terhadap database production.
 
 ## Arsitektur dan alasan pemilihan stack
 
